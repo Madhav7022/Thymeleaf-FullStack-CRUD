@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Management</title>
+</head>
+<body>
+    <div align="center">
+        <h1>Welcome to CrudAssignment Book Manager</h1>
+        
+        <h3 th:text="${message}" style="color: green;"></h3>
+        
+        <p>
+            <a href="/insert"><button>Add New Book</button></a>
+        </p>
+        <p>
+            <a href="/fetch"><button>View All Books</button></a>
+        </p>
+    </div>
+</body>
+</html>
