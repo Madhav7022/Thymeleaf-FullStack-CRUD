@@ -2,15 +2,18 @@ pipeline {
     agent any
 
     environment {
-        REGISTRY = "your-dockerhub-username"   // replace with your DockerHub username
+        REGISTRY = "your-dockerhub-username"
         IMAGE = "spring-boot-app"
         CONTAINER_NAME = "springboot-container"
+    }
+
+    tools {
+        maven 'Maven 3.9.6'   // configure in Jenkins Global Tool Configuration
     }
 
     stages {
         stage('Checkout') {
             steps {
-                // Use your actual repo and Jenkins credentials ID
                 git branch: 'main',
                     url: 'https://github.com/Madhav7022/Thymeleaf-FullStack-CRUD.git',
                     credentialsId: 'github-creds'
@@ -42,7 +45,6 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                // Since you’re using one server, deploy locally
                 sh """
                     docker pull $REGISTRY/$IMAGE:${BUILD_NUMBER}
                     docker stop $CONTAINER_NAME || true
