@@ -7,10 +7,6 @@ pipeline {
         CONTAINER_NAME = "springboot-container"
     }
 
-    tools {
-        maven 'Maven 3.9.6'   // configure in Jenkins Global Tool Configuration
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -52,15 +48,6 @@ pipeline {
                     docker run -d --name $CONTAINER_NAME -p 8080:8080 $REGISTRY/$IMAGE:${BUILD_NUMBER}
                 """
             }
-        }
-    }
-
-    post {
-        success {
-            echo '✅ Deployment successful!'
-        }
-        failure {
-            echo '❌ Pipeline failed!'
         }
     }
 }
